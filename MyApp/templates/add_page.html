@@ -1,0 +1,32 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>MyApp</title>
+</head>
+<body>
+    <h1>Add Page</h1>
+    <br/>
+    {% if not category_name %}
+        <div style="color: #9e1317">
+            The specified category is not exist.
+        </div>
+    {% else %}
+        <form action="/category/{{ category_name }}/add_page/" id="page_form" method="post">
+            {% csrf_token %}
+            {% for hidden in form.hidden_fields %}
+                {{ hidden }}
+            {% endfor %}
+
+            {% for field in form.visible_fields %}
+                {{ field.errors }}
+                {{ field.help_text }}
+                {{ field }}
+            {% endfor %}
+            <br/>
+            <input type="submit" name="submit" value="Create Page"/>
+        </form>
+    {% endif %}
+
+</body>
+</html>
