@@ -1,14 +1,9 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-        "http://www.w3.org/TR/html4/loose.dtd">
-{% load staticfiles %}
-<html>
-    <head>
-        <title>MyApp</title>
-    </head>
-    <body>
-        <h1>says...hello world!</h1>
-
-        {% if categories %}
+{% extends 'base.html' %}
+{% block title %}
+    welcome to myapp
+{% endblock %}
+{% block body_block %}
+    {% if categories %}
             <ul>
                 {% for category in categories %}
                 <li><a href="/category/{{ category.slug }}">{{ category.name }}</a></li>
@@ -17,8 +12,4 @@
         {% else %}
             <strong>There are no categories present.</strong>
         {% endif %}
-
-        <a href="/rango/about/">About</a>
-        <a href="/add_category/">Add a New Category</a>
-    </body>
-</html>
+{% endblock %}
